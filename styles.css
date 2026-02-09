@@ -3068,13 +3068,46 @@ body {
     }
 }
 
-/* 补充执行菜单模态框样式 */
+/* 补充内容模态框样式 */
 .supplement-title {
     background: linear-gradient(135deg, #f39c12, #e67e22) !important;
 }
 
-.supplement-content {
+.supplement-sections {
     padding: 30px;
+}
+
+.supplement-section {
+    margin-bottom: 40px;
+}
+
+.supplement-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1));
+    border-radius: 12px;
+    border-left: 5px solid #f39c12;
+}
+
+.section-icon {
+    font-size: 2rem;
+}
+
+.section-header h3 {
+    color: var(--dark);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.supplement-content {
+    padding: 0 20px;
 }
 
 .meal-section {
@@ -3123,6 +3156,12 @@ body {
 .meal-header h3 {
     color: var(--dark);
     font-size: 1.6rem;
+    margin: 0;
+}
+
+.meal-header h4 {
+    color: var(--dark);
+    font-size: 1.4rem;
     margin: 0;
 }
 
@@ -3205,6 +3244,21 @@ body {
     line-height: 1.8;
 }
 
+.supplement-footer {
+    background: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    border-top: 2px solid #eee;
+}
+
+.supplement-footer p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+    font-style: italic;
+}
+
 /* 响应式 - 补充菜单 */
 @media (max-width: 767px) and (min-width: 481px) {
     .supplement-btn {
@@ -3220,6 +3274,10 @@ body {
     .meal-body {
         padding-left: 0;
     }
+    
+    .supplement-content {
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3233,8 +3291,30 @@ body {
         right: 20px;
     }
     
-    .supplement-content {
+    .supplement-sections {
         padding: 20px;
+    }
+    
+    .supplement-section {
+        margin-bottom: 30px;
+    }
+    
+    .section-header {
+        flex-direction: row;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .section-icon {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .supplement-content {
+        padding: 0 10px;
     }
     
     .meal-section {
@@ -3251,8 +3331,8 @@ body {
         font-size: 2rem;
     }
     
-    .meal-header h3 {
-        font-size: 1.3rem;
+    .meal-header h4 {
+        font-size: 1.2rem;
     }
     
     .meal-body {
@@ -3269,16 +3349,11 @@ body {
         font-size: 0.95rem;
     }
     
-    .supplement-philosophy {
-        padding: 20px;
-    }
-    
-    .supplement-philosophy h3 {
-        font-size: 1.5rem;
-    }
-    
-    .supplement-philosophy blockquote {
-        font-size: 1rem;
+    .supplement-footer {
         padding: 15px;
+    }
+    
+    .supplement-footer p {
+        font-size: 0.9rem;
     }
 }
