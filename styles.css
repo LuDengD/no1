@@ -1081,8 +1081,8 @@ body {
 /* 浮动按钮 */
 .float-btn {
     position: fixed;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     color: white;
     border: none;
     border-radius: 50%;
@@ -1096,24 +1096,24 @@ body {
 }
 
 .survival-btn {
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     background: linear-gradient(135deg, #e74c3c, #c0392b);
     box-shadow: 0 5px 25px rgba(231, 76, 60, 0.5);
     animation: pulse 2s infinite;
 }
 
 .supplement-btn {
-    bottom: 200px;
-    right: 30px;
+    bottom: 170px;
+    right: 20px;
     background: linear-gradient(135deg, #f39c12, #e67e22);
     box-shadow: 0 5px 25px rgba(243, 156, 18, 0.5);
     animation: pulse 2s infinite 1s;
 }
 
 .game-btn {
-    bottom: 115px;
-    right: 30px;
+    bottom: 95px;
+    right: 20px;
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
     box-shadow: 0 5px 25px rgba(155, 89, 182, 0.5);
     animation: pulse 2s infinite 0.5s;
@@ -1135,12 +1135,12 @@ body {
 }
 
 .float-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 2px;
 }
 
 .float-text {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
 }
 
@@ -2459,26 +2459,31 @@ body {
     }
     
     .float-btn {
-        width: 65px;
-        height: 65px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .supplement-btn {
+        bottom: 155px;
+        right: 15px;
     }
     
     .game-btn {
-        bottom: 100px;
-        right: 20px;
+        bottom: 85px;
+        right: 15px;
     }
     
     .survival-btn {
-        bottom: 20px;
-        right: 20px;
+        bottom: 15px;
+        right: 15px;
     }
     
     .float-icon {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
     
     .float-text {
-        font-size: 0.68rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -2847,26 +2852,31 @@ body {
     }
     
     .float-btn {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .supplement-btn {
+        bottom: 145px;
+        right: 15px;
     }
     
     .game-btn {
-        bottom: 95px;
-        right: 20px;
+        bottom: 80px;
+        right: 15px;
     }
     
     .survival-btn {
-        bottom: 20px;
-        right: 20px;
+        bottom: 15px;
+        right: 15px;
     }
     
     .float-icon {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .float-text {
-        font-size: 0.65rem;
+        font-size: 0.55rem;
     }
     
     .modal-content {
@@ -3262,13 +3272,13 @@ body {
 /* 响应式 - 补充菜单 */
 @media (max-width: 767px) and (min-width: 481px) {
     .supplement-btn {
-        bottom: 185px;
-        right: 20px;
+        bottom: 155px;
+        right: 15px;
     }
     
     .game-btn {
-        bottom: 100px;
-        right: 20px;
+        bottom: 85px;
+        right: 15px;
     }
     
     .meal-body {
@@ -3282,13 +3292,13 @@ body {
 
 @media (max-width: 480px) {
     .supplement-btn {
-        bottom: 180px;
-        right: 20px;
+        bottom: 145px;
+        right: 15px;
     }
     
     .game-btn {
-        bottom: 95px;
-        right: 20px;
+        bottom: 80px;
+        right: 15px;
     }
     
     .supplement-sections {
