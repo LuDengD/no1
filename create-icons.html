@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成 PWA 图标</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .icon-preview {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .instructions h2 {
+            color: #ff6b35;
+        }
+        .instructions ol {
+            line-height: 2;
+        }
+        button {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-preview">
+        <h1>宗师之路 PWA 图标生成器</h1>
+        <p>点击下面的按钮生成并下载各种尺寸的图标</p>
+        <div id="canvasContainer"></div>
+        <button onclick="generateAllIcons()">生成所有图标</button>
+    </div>
+    
+    <div class="instructions">
+        <h2>📋 使用说明</h2>
+        <ol>
+            <li>点击"生成所有图标"按钮</li>
+            <li>创建一个名为 <code>icons</code> 的文件夹</li>
+            <li>将下载的所有图标文件放入 <code>icons</code> 文件夹</li>
+            <li>确保文件名与下载的文件名一致</li>
+            <li>刷新你的网站，PWA 功能即可生效</li>
+        </ol>
+        
+        <h2>🎨 图标设计</h2>
+        <p>图标采用渐变橙色背景，中间显示"宗师"二字，代表宗师之路的核心理念。</p>
+        
+        <h2>✅ 需要的图标尺寸</h2>
+        <ul>
+            <li>72x72 - 小图标</li>
+            <li>96x96 - 中图标</li>
+            <li>128x128 - 中图标</li>
+            <li>144x144 - 中图标</li>
+            <li>152x152 - iOS 图标</li>
+            <li>192x192 - 标准图标</li>
+            <li>384x384 - 大图标</li>
+            <li>512x512 - 超大图标</li>
+        </ul>
+    </div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // 渐变背景
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#ff6b35');
+            gradient.addColorStop(0.5, '#f7931e');
+            gradient.addColorStop(1, '#fbb03b');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // 添加圆角效果（可选）
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.15);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // 文字
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.35}px Arial, "Microsoft YaHei", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('宗师', size / 2, size / 2);
+            
+            // 添加阴影效果
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = size * 0.02;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = size * 0.01;
+            
+            return canvas;
+        }
+        
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function generateAllIcons() {
+            const container = document.getElementById('canvasContainer');
+            container.innerHTML = '';
+            
+            sizes.forEach(size => {
+                const canvas = createIcon(size);
+                canvas.style.width = '100px';
+                canvas.style.height = '100px';
+                container.appendChild(canvas);
+                
+                // 延迟下载，避免浏览器阻止多个下载
+                setTimeout(() => {
+                    downloadCanvas(canvas, `icon-${size}x${size}.png`);
+                }, sizes.indexOf(size) * 500);
+            });
+            
+            alert(`开始下载 ${sizes.length} 个图标文件！\n请将它们保存到 icons 文件夹中。`);
+        }
+        
+        // 页面加载时显示预览
+        window.addEventListener('load', () => {
+            const container = document.getElementById('canvasContainer');
+            const previewCanvas = createIcon(192);
+            previewCanvas.style.width = '150px';
+            previewCanvas.style.height = '150px';
+            container.appendChild(previewCanvas);
+        });
+    </script>
+</body>
+</html>
