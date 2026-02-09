@@ -3039,13 +3039,46 @@ body {
         -webkit-touch-callout: none;
     }
     
-    /* 隐藏浮动按钮在独立模式下的位置调整 */
+    /* PWA 独立模式下的按钮位置调整 */
+    .supplement-btn {
+        bottom: 185px;
+    }
+    
     .game-btn {
-        bottom: 125px;
+        bottom: 110px;
     }
     
     .survival-btn {
-        bottom: 40px;
+        bottom: 35px;
+    }
+}
+
+/* PWA 独立模式 + 移动端 */
+@media all and (display-mode: standalone) and (max-width: 767px) {
+    .supplement-btn {
+        bottom: 160px;
+    }
+    
+    .game-btn {
+        bottom: 90px;
+    }
+    
+    .survival-btn {
+        bottom: 20px;
+    }
+}
+
+@media all and (display-mode: standalone) and (max-width: 480px) {
+    .supplement-btn {
+        bottom: 150px;
+    }
+    
+    .game-btn {
+        bottom: 85px;
+    }
+    
+    .survival-btn {
+        bottom: 20px;
     }
 }
 
@@ -3083,41 +3116,319 @@ body {
     background: linear-gradient(135deg, #f39c12, #e67e22) !important;
 }
 
-.supplement-sections {
-    padding: 30px;
+.supplement-accordion {
+    padding: 20px 30px 30px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.supplement-section {
-    margin-bottom: 40px;
+/* 折叠面板样式 */
+.accordion-item {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #e9ecef;
+    overflow: hidden;
+    transition: all 0.3s;
 }
 
-.supplement-section:last-child {
-    margin-bottom: 0;
+.accordion-item:hover {
+    border-color: #f39c12;
+    box-shadow: 0 3px 15px rgba(243, 156, 18, 0.2);
 }
 
-.section-header {
+.accordion-item.active {
+    border-color: #f39c12;
+}
+
+.accordion-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding: 20px;
+    gap: 12px;
+    padding: 15px 18px;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), rgba(230, 126, 34, 0.05));
+    transition: background 0.3s;
+    user-select: none;
+}
+
+.accordion-header:hover {
     background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1));
-    border-radius: 12px;
-    border-left: 5px solid #f39c12;
 }
 
-.section-icon {
-    font-size: 2rem;
-}
-
-.section-header h3 {
-    color: var(--dark);
+.accordion-icon {
     font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.accordion-header h3 {
+    flex: 1;
+    color: var(--dark);
+    font-size: 1.2rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.accordion-arrow {
+    font-size: 1rem;
+    color: #f39c12;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.accordion-item.active .accordion-content {
+    padding: 20px;
+}
+
+/* 冥想内容样式 */
+.meditation-intro {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(142, 68, 173, 0.1));
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #9b59b6;
+    margin-bottom: 25px;
+}
+
+.intro-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
     margin: 0;
 }
 
-.supplement-content {
-    padding: 0 20px;
+.meditation-section {
+    margin-bottom: 30px;
+}
+
+.meditation-section:last-child {
+    margin-bottom: 0;
+}
+
+.meditation-section h4 {
+    color: #9b59b6;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.meditation-section > p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.comparison-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.compare-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.compare-item strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.compare-item p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.purpose {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+    margin-top: 15px;
+}
+
+.steps-box {
+    margin: 15px 0;
+}
+
+.step-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.step-item:last-child {
+    margin-bottom: 0;
+}
+
+.step-item.warning {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    border: 2px solid #e74c3c;
+}
+
+.step-item strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.step-item p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.step-item ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0 0 0;
+}
+
+.step-item ul li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 6px;
+    color: #666;
+}
+
+.step-item ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #9b59b6;
+    font-weight: 700;
+}
+
+.scenario-box {
+    margin: 15px 0;
+}
+
+.scenario {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.scenario.success {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));
+    border: 2px solid #2ecc71;
+}
+
+.scenario strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.scenario p {
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.scenario ol {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+}
+
+.scenario ol li {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.formula-box {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.formula-box strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.formula-box p {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.sop-timeline {
+    margin: 15px 0;
+}
+
+.sop-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-left: 4px solid #3498db;
+}
+
+.sop-item.phase {
+    border-left-color: #9b59b6;
+}
+
+.sop-item:last-child {
+    margin-bottom: 0;
+}
+
+.sop-item strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.sop-item p {
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.meditation-summary {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1));
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.meditation-summary h4 {
+    color: #f39c12;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.meditation-summary blockquote {
+    background: white;
+    padding: 20px;
+    border-left: 5px solid #f39c12;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.8;
+    color: #555;
 }
 
 .meal-section {
@@ -3285,8 +3596,13 @@ body {
         padding-left: 0;
     }
     
-    .supplement-content {
-        padding: 0 10px;
+    .supplement-accordion {
+        padding: 15px 20px 20px;
+        max-width: 100%;
+    }
+    
+    .comparison-box {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -3301,30 +3617,70 @@ body {
         right: 15px;
     }
     
-    .supplement-sections {
-        padding: 20px;
+    .supplement-accordion {
+        padding: 12px 15px 15px;
+        max-width: 100%;
     }
     
-    .supplement-section {
-        margin-bottom: 30px;
+    .accordion-item {
+        margin-bottom: 12px;
     }
     
-    .section-header {
-        flex-direction: row;
-        gap: 12px;
+    .accordion-header {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+    
+    .accordion-icon {
+        font-size: 1.6rem;
+    }
+    
+    .accordion-header h3 {
+        font-size: 1.05rem;
+    }
+    
+    .accordion-arrow {
+        font-size: 0.9rem;
+    }
+    
+    .accordion-item.active .accordion-content {
         padding: 15px;
     }
     
-    .section-icon {
-        font-size: 1.8rem;
+    .meditation-intro {
+        padding: 15px;
     }
     
-    .section-header h3 {
-        font-size: 1.4rem;
+    .intro-text {
+        font-size: 1rem;
     }
     
-    .supplement-content {
-        padding: 0 10px;
+    .meditation-section h4 {
+        font-size: 1.2rem;
+    }
+    
+    .comparison-box {
+        grid-template-columns: 1fr;
+    }
+    
+    .compare-item,
+    .step-item,
+    .scenario,
+    .sop-item {
+        padding: 12px;
+    }
+    
+    .formula-box {
+        padding: 15px;
+    }
+    
+    .meditation-summary {
+        padding: 15px;
+    }
+    
+    .meditation-summary blockquote {
+        padding: 15px;
+        font-size: 1rem;
     }
     
     .meal-section {
@@ -3365,5 +3721,1037 @@ body {
     
     .supplement-footer p {
         font-size: 0.9rem;
+    }
+}
+
+/* 外语输入路径样式 */
+.language-phase {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.language-phase:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.phase-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.phase-number {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.phase-title h4 {
+    color: #3498db;
+    font-size: 1.3rem;
+    margin: 0 0 3px 0;
+}
+
+.phase-duration {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.phase-goal {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 3px solid #95a5a6;
+}
+
+.task-item h5 {
+    color: var(--dark);
+    font-size: 1.05rem;
+    margin: 0 0 8px 0;
+}
+
+/* 阅读细则样式 */
+.reading-intro {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(142, 68, 173, 0.1));
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 5px solid #9b59b6;
+}
+
+.reading-intro .intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+}
+
+.reading-phase {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+.reading-phase:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.book-item {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.book-item:hover {
+    border-color: #9b59b6;
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.2);
+    transform: translateY(-2px);
+}
+
+.book-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.book-number {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.book-header h5 {
+    color: var(--dark);
+    font-size: 1.15rem;
+    margin: 0;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.book-reason,
+.book-action {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.book-reason:last-child,
+.book-action:last-child {
+    margin-bottom: 0;
+}
+
+.book-reason strong,
+.book-action strong {
+    color: #9b59b6;
+    font-size: 1rem;
+}
+
+.book-reason p,
+.book-action p {
+    color: #555;
+    margin: 5px 0 0 0;
+}
+
+.reading-summary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
+.reading-summary h4 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reading-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rule-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid white;
+}
+
+.rule-item strong {
+    display: block;
+    color: white;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.rule-item p {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 阅读细则响应式 */
+@media (max-width: 767px) {
+    .reading-rules {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-item {
+        padding: 15px;
+    }
+    
+    .book-header {
+        gap: 12px;
+    }
+    
+    .book-number {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .book-header h5 {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reading-intro {
+        padding: 15px;
+    }
+    
+    .reading-intro .intro-text {
+        font-size: 1rem;
+    }
+    
+    .book-list {
+        gap: 15px;
+    }
+    
+    .book-item {
+        padding: 12px;
+    }
+    
+    .book-header {
+        gap: 10px;
+    }
+    
+    .book-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.95rem;
+    }
+    
+    .book-header h5 {
+        font-size: 1rem;
+    }
+    
+    .book-reason strong,
+    .book-action strong {
+        font-size: 0.95rem;
+    }
+    
+    .book-reason p,
+    .book-action p {
+        font-size: 0.9rem;
+    }
+    
+    .reading-summary {
+        padding: 20px;
+    }
+    
+    .reading-summary h4 {
+        font-size: 1.2rem;
+    }
+    
+    .rule-item {
+        padding: 12px;
+    }
+    
+    .rule-item strong {
+        font-size: 1rem;
+    }
+    
+    .rule-item p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 拳击词条样式 */
+.boxing-intro {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 5px solid #e74c3c;
+}
+
+.boxing-intro h4 {
+    color: #e74c3c;
+    font-size: 1.3rem;
+    margin: 0 0 12px 0;
+}
+
+.intro-answer {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 0 0 15px 0;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+}
+
+.boxing-intro .intro-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+.combat-strategy {
+    background: white;
+    border: 3px solid;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.combat-strategy:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.strategy-1 {
+    border-color: #f39c12;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), white);
+}
+
+.strategy-2 {
+    border-color: #3498db;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), white);
+}
+
+.strategy-3 {
+    border-color: #2ecc71;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), white);
+}
+
+.strategy-4 {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), white);
+}
+
+.strategy-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.strategy-rank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.rank-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.strategy-1 .rank-number {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.strategy-2 .rank-number {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.strategy-3 .rank-number {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.strategy-4 .rank-number {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.rank-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #34495e;
+    color: white;
+    white-space: nowrap;
+}
+
+.strategy-1 .rank-badge {
+    background: #f39c12;
+}
+
+.strategy-2 .rank-badge {
+    background: #3498db;
+}
+
+.strategy-3 .rank-badge {
+    background: #2ecc71;
+}
+
+.rank-badge.danger {
+    background: #e74c3c;
+}
+
+.strategy-header h4 {
+    color: var(--dark);
+    font-size: 1.3rem;
+    margin: 0;
+    flex: 1;
+}
+
+.strategy-body {
+    padding-left: 65px;
+}
+
+.strategy-question {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #95a5a6;
+}
+
+.strategy-question strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.strategy-question p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.strategy-condition {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #e74c3c;
+}
+
+.strategy-condition strong {
+    display: block;
+    color: #e74c3c;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.strategy-condition p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.strategy-explanation {
+    margin-bottom: 15px;
+}
+
+.strategy-explanation.highlight {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #ffc107;
+}
+
+.strategy-explanation p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.strategy-explanation p:last-child {
+    margin-bottom: 0;
+}
+
+.final-action {
+    font-size: 1.2rem;
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.strategy-result {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.strategy-result.success {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(39, 174, 96, 0.15));
+    border: 2px solid #2ecc71;
+}
+
+.strategy-result.warning {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.15), rgba(230, 126, 34, 0.15));
+    border: 2px solid #f39c12;
+}
+
+.result-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.strategy-result strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.strategy-result p {
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.boxing-summary {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.boxing-summary h4 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.boxing-summary blockquote {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-left: 5px solid #f39c12;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.boxing-summary blockquote p {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.boxing-summary blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.boxing-summary ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 15px 0;
+}
+
+.boxing-summary ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+}
+
+.boxing-summary ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #f39c12;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.final-quote {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+    color: #f39c12;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    font-style: italic;
+}
+
+/* 拳击终极总结样式 */
+.boxing-final-summary {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.final-statement {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.statement-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.statement-main {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.boxing-purposes {
+    margin-bottom: 30px;
+}
+
+.purposes-intro {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.purpose-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.purpose-card:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.purpose-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.purpose-card h5 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+}
+
+.purpose-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+}
+
+.final-wisdom {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    border: 3px solid #f39c12;
+    position: relative;
+}
+
+.wisdom-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.final-wisdom p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 15px;
+}
+
+.final-wisdom p:last-child {
+    margin-bottom: 0;
+}
+
+.wisdom-conclusion {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f39c12;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(243, 156, 18, 0.5);
+}
+
+/* 拳击词条响应式 */
+@media (max-width: 767px) {
+    .strategy-body {
+        padding-left: 0;
+    }
+    
+    .strategy-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .strategy-rank {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .purpose-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .boxing-intro {
+        padding: 20px;
+    }
+    
+    .boxing-intro h4 {
+        font-size: 1.2rem;
+    }
+    
+    .intro-answer {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+    
+    .boxing-intro .intro-text {
+        font-size: 1rem;
+    }
+    
+    .combat-strategy {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .strategy-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .strategy-rank {
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .rank-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    
+    .rank-badge {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+    }
+    
+    .strategy-header h4 {
+        font-size: 1.15rem;
+    }
+    
+    .strategy-body {
+        padding-left: 0;
+    }
+    
+    .strategy-question,
+    .strategy-condition,
+    .strategy-explanation.highlight {
+        padding: 12px;
+    }
+    
+    .strategy-result {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .result-icon {
+        font-size: 1.5rem;
+    }
+    
+    .final-action {
+        font-size: 1.1rem;
+    }
+    
+    .boxing-summary {
+        padding: 20px;
+    }
+    
+    .boxing-summary h4 {
+        font-size: 1.3rem;
+    }
+    
+    .boxing-summary blockquote {
+        padding: 20px;
+    }
+    
+    .boxing-summary blockquote p {
+        font-size: 1rem;
+    }
+    
+    .final-quote {
+        font-size: 1.05rem;
+    }
+    
+    .boxing-final-summary {
+        padding: 25px 20px;
+    }
+    
+    .statement-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .statement-main {
+        font-size: 1.15rem;
+    }
+    
+    .purposes-intro {
+        font-size: 1.1rem;
+    }
+    
+    .purpose-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .purpose-card {
+        padding: 20px 15px;
+    }
+    
+    .purpose-icon {
+        font-size: 2.5rem;
+    }
+    
+    .purpose-card h5 {
+        font-size: 1.2rem;
+    }
+    
+    .purpose-card p {
+        font-size: 0.95rem;
+    }
+    
+    .final-wisdom {
+        padding: 20px;
+    }
+    
+    .wisdom-icon {
+        font-size: 2.5rem;
+    }
+    
+    .final-wisdom p {
+        font-size: 1.05rem;
+    }
+    
+    .wisdom-conclusion {
+        font-size: 1.15rem;
+    }
+}
+
+
+
+.task-strategy {
+    color: #666;
+    margin: 0 0 10px 0;
+    line-height: 1.6;
+}
+
+.task-strategy.warning-text {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.task-item ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.task-item ul li {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.task-item ul li:last-child {
+    margin-bottom: 0;
+}
+
+.task-item ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: 700;
+}
+
+.task-item p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 响应式 - 外语输入路径 */
+@media (max-width: 768px) {
+    .phase-title {
+        gap: 12px;
+    }
+    
+    .phase-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    
+    .phase-title h4 {
+        font-size: 1.2rem;
+    }
+    
+    .task-item {
+        padding: 10px 12px;
+    }
+    
+    .task-item h5 {
+        font-size: 1rem;
+    }
+}
+
+/* 补充 - 手机端响应式优化 */
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 0.95rem;
+    }
+    
+    .meditation-section h4 {
+        font-size: 1.1rem;
+    }
+    
+    .compare-item,
+    .step-item,
+    .scenario,
+    .sop-item,
+    .task-item {
+        padding: 10px 12px;
+    }
+    
+    .formula-box {
+        padding: 12px;
+    }
+    
+    .meditation-summary {
+        padding: 12px;
+    }
+    
+    .meditation-summary blockquote {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    .language-phase {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 }

@@ -244,3 +244,21 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// 折叠面板功能
+function toggleAccordion(header) {
+    const item = header.parentElement;
+    const content = header.nextElementSibling;
+    const arrow = header.querySelector('.accordion-arrow');
+    
+    // 切换当前项
+    item.classList.toggle('active');
+    
+    if (item.classList.contains('active')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(180deg)';
+    } else {
+        content.style.maxHeight = '0';
+        arrow.style.transform = 'rotate(0deg)';
+    }
+}
