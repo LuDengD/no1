@@ -1103,6 +1103,14 @@ body {
     animation: pulse 2s infinite;
 }
 
+.supplement-btn {
+    bottom: 200px;
+    right: 30px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    box-shadow: 0 5px 25px rgba(243, 156, 18, 0.5);
+    animation: pulse 2s infinite 1s;
+}
+
 .game-btn {
     bottom: 115px;
     right: 30px;
@@ -1114,6 +1122,11 @@ body {
 .survival-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 35px rgba(231, 76, 60, 0.7);
+}
+
+.supplement-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 35px rgba(243, 156, 18, 0.7);
 }
 
 .game-btn:hover {
@@ -3052,5 +3065,220 @@ body {
     .install-button {
         padding: 8px 20px;
         font-size: 0.9rem;
+    }
+}
+
+/* 补充执行菜单模态框样式 */
+.supplement-title {
+    background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+}
+
+.supplement-content {
+    padding: 30px;
+}
+
+.meal-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 3px solid;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.meal-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.breakfast {
+    border-color: #3498db;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), white);
+}
+
+.lunch {
+    border-color: #f39c12;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), white);
+}
+
+.dinner {
+    border-color: #9b59b6;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05), white);
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.meal-icon {
+    font-size: 2.5rem;
+}
+
+.meal-header h3 {
+    color: var(--dark);
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.meal-body {
+    padding-left: 55px;
+}
+
+.meal-item {
+    margin-bottom: 15px;
+}
+
+.meal-item strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.meal-item p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.meal-reason {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid;
+    margin-top: 15px;
+}
+
+.breakfast .meal-reason {
+    border-left-color: #3498db;
+}
+
+.lunch .meal-reason {
+    border-left-color: #f39c12;
+}
+
+.dinner .meal-reason {
+    border-left-color: #9b59b6;
+}
+
+.meal-reason strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.meal-reason p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.supplement-philosophy {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 30px;
+    border-radius: 0 0 20px 20px;
+}
+
+.supplement-philosophy h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.supplement-philosophy blockquote {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-left: 5px solid white;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* 响应式 - 补充菜单 */
+@media (max-width: 767px) and (min-width: 481px) {
+    .supplement-btn {
+        bottom: 185px;
+        right: 20px;
+    }
+    
+    .game-btn {
+        bottom: 100px;
+        right: 20px;
+    }
+    
+    .meal-body {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .supplement-btn {
+        bottom: 180px;
+        right: 20px;
+    }
+    
+    .game-btn {
+        bottom: 95px;
+        right: 20px;
+    }
+    
+    .supplement-content {
+        padding: 20px;
+    }
+    
+    .meal-section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .meal-header {
+        flex-direction: row;
+        gap: 12px;
+    }
+    
+    .meal-icon {
+        font-size: 2rem;
+    }
+    
+    .meal-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .meal-body {
+        padding-left: 0;
+    }
+    
+    .meal-item strong,
+    .meal-reason strong {
+        font-size: 1rem;
+    }
+    
+    .meal-item p,
+    .meal-reason p {
+        font-size: 0.95rem;
+    }
+    
+    .supplement-philosophy {
+        padding: 20px;
+    }
+    
+    .supplement-philosophy h3 {
+        font-size: 1.5rem;
+    }
+    
+    .supplement-philosophy blockquote {
+        font-size: 1rem;
+        padding: 15px;
     }
 }

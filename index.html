@@ -628,6 +628,12 @@
         </div>
     </footer>
 
+    <!-- 补充按钮 -->
+    <button class="float-btn supplement-btn" id="supplementBtn" title="执行菜单">
+        <span class="float-icon">⚡</span>
+        <span class="float-text">执行菜单</span>
+    </button>
+
     <!-- 游戏规范按钮 -->
     <button class="float-btn game-btn" id="gameBtn" title="游戏规范">
         <span class="float-icon">🎮</span>
@@ -639,6 +645,75 @@
         <span class="float-icon">🛟</span>
         <span class="float-text">防沉没</span>
     </button>
+
+    <!-- 补充执行菜单模态框 -->
+    <div class="modal" id="supplementModal">
+        <div class="modal-content">
+            <span class="close" id="closeSupplementModal">&times;</span>
+            <h2 class="modal-title supplement-title">⚡ 执行菜单</h2>
+            <p class="modal-subtitle">三餐时刻的内容选择指南</p>
+            
+            <div class="supplement-content">
+                <div class="meal-section breakfast">
+                    <div class="meal-header">
+                        <span class="meal-icon">🌅</span>
+                        <h3>早餐 - 能量时刻</h3>
+                    </div>
+                    <div class="meal-body">
+                        <div class="meal-item">
+                            <strong>看什么：</strong>
+                            <p>TED Talks 或 Charisma on Command（英语）</p>
+                        </div>
+                        <div class="meal-reason">
+                            <strong>💡 理由：</strong>
+                            <p>早上大脑清醒，适合输入逻辑和观点，开启充满"霸气"的一天</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meal-section lunch">
+                    <div class="meal-header">
+                        <span class="meal-icon">🌞</span>
+                        <h3>午餐 - 技艺时刻</h3>
+                    </div>
+                    <div class="meal-body">
+                        <div class="meal-item">
+                            <strong>看什么：</strong>
+                            <p>Naoki Saito 改画视频 或 日语Vtuber玩崩铁</p>
+                        </div>
+                        <div class="meal-reason">
+                            <strong>💡 理由：</strong>
+                            <p>午休时间短，看画画或游戏比较轻松，同时维持日语环境</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meal-section dinner">
+                    <div class="meal-header">
+                        <span class="meal-icon">🌙</span>
+                        <h3>晚餐 - 圣人时刻</h3>
+                    </div>
+                    <div class="meal-body">
+                        <div class="meal-item">
+                            <strong>看什么：</strong>
+                            <p>关闭屏幕</p>
+                        </div>
+                        <div class="meal-reason">
+                            <strong>💡 理由：</strong>
+                            <p>专注于盘子里的鸡胸肉和西兰花。细嚼慢咽，控制热量，反思一天的得失</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="supplement-philosophy">
+                <h3>🎯 核心原则</h3>
+                <blockquote>
+                    "每一餐都是修行的机会。早餐充能，午餐学习，晚餐反思。让吃饭的时间也成为进化的一部分。"
+                </blockquote>
+            </div>
+        </div>
+    </div>
 
     <!-- 游戏规范模态框 -->
     <div class="modal" id="gameModal">

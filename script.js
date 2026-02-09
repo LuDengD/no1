@@ -170,9 +170,20 @@ const gameBtn = document.getElementById('gameBtn');
 const gameModal = document.getElementById('gameModal');
 const closeGameModal = document.getElementById('closeGameModal');
 
+// 补充执行菜单模态框功能
+const supplementBtn = document.getElementById('supplementBtn');
+const supplementModal = document.getElementById('supplementModal');
+const closeSupplementModal = document.getElementById('closeSupplementModal');
+
 // 打开防沉没模态框
 floatBtn.addEventListener('click', () => {
     modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+});
+
+// 打开补充执行菜单模态框
+supplementBtn.addEventListener('click', () => {
+    supplementModal.classList.add('show');
     document.body.style.overflow = 'hidden';
 });
 
@@ -188,6 +199,12 @@ closeModal.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
 });
 
+// 关闭补充执行菜单模态框
+closeSupplementModal.addEventListener('click', () => {
+    supplementModal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+});
+
 // 关闭游戏规范模态框
 closeGameModal.addEventListener('click', () => {
     gameModal.classList.remove('show');
@@ -198,6 +215,10 @@ closeGameModal.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
         modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    if (e.target === supplementModal) {
+        supplementModal.classList.remove('show');
         document.body.style.overflow = 'auto';
     }
     if (e.target === gameModal) {
@@ -211,6 +232,10 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (modal.classList.contains('show')) {
             modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        if (supplementModal.classList.contains('show')) {
+            supplementModal.classList.remove('show');
             document.body.style.overflow = 'auto';
         }
         if (gameModal.classList.contains('show')) {
