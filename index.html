@@ -32,6 +32,457 @@
     
     <title>宗师之路 - Path to Grandmaster</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 强制覆盖accordion样式 */
+        .accordion-item {
+            margin-bottom: 4px !important;
+            border-radius: 6px !important;
+            border-width: 1.5px !important;
+        }
+        .accordion-header {
+            padding: 4px 10px !important;
+            gap: 6px !important;
+            border-radius: 6px !important;
+        }
+        .accordion-icon {
+            font-size: 1.1rem !important;
+        }
+        .accordion-header h3 {
+            font-size: 0.85rem !important;
+            line-height: 1.1 !important;
+        }
+        .accordion-arrow {
+            font-size: 0.75rem !important;
+        }
+        
+        /* 健身词条样式 */
+        .workout-table table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin: 15px 0 !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        }
+        .workout-table th,
+        .workout-table td {
+            padding: 12px !important;
+            text-align: left !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+        .workout-table th {
+            background: rgba(255, 255, 255, 0.1) !important;
+            font-weight: 600 !important;
+            color: var(--primary-color) !important;
+        }
+        .workout-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+        .workout-structure {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .structure-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+        .structure-label {
+            font-weight: 500;
+        }
+        .structure-time {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .workout-tips,
+        .progression-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .workout-tips li,
+        .progression-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+        .workout-tips li:before,
+        .progression-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        .exercise-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .exercise-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .exercise-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .training-flow {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .training-flow p {
+            margin: 8px 0;
+        }
+        .cardio-section {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 3px solid #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .cardio-info {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+        
+        /* 工具词条样式 */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .tool-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .tool-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        .tool-card-large {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .tool-icon {
+            font-size: 1.5rem;
+        }
+        .tool-header h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        .tool-name {
+            font-weight: 600;
+            margin: 8px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .tool-desc {
+            margin: 8px 0;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .tool-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .tool-link:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+        .boxing-flow {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .flow-exercises {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .flow-exercise {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .flow-exercise strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .flow-exercise span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .flow-sequence h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .flow-sequence p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        .flow-detail {
+            padding-left: 15px;
+            opacity: 0.9;
+        }
+        
+        /* 移动端和PWA全面适配 */
+        @media (max-width: 768px) {
+            /* 模态框移动端优化 */
+            .modal-content {
+                width: 95% !important;
+                max-width: 95% !important;
+                margin: 5% auto !important;
+                max-height: 90vh !important;
+                padding: 15px !important;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem !important;
+                padding: 15px 0 !important;
+            }
+            
+            .modal-subtitle {
+                font-size: 0.9rem !important;
+                padding-bottom: 15px !important;
+            }
+            
+            /* Accordion移动端优化 */
+            .accordion-list {
+                padding: 10px 5px !important;
+            }
+            
+            .accordion-item {
+                margin-bottom: 3px !important;
+            }
+            
+            .accordion-header {
+                padding: 6px 8px !important;
+                gap: 4px !important;
+            }
+            
+            .accordion-icon {
+                font-size: 1rem !important;
+            }
+            
+            .accordion-header h3 {
+                font-size: 0.75rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .accordion-arrow {
+                font-size: 0.7rem !important;
+            }
+            
+            .accordion-content {
+                padding: 10px !important;
+            }
+            
+            /* 内容区域移动端优化 */
+            .content-section {
+                padding: 12px 0 !important;
+            }
+            
+            .content-section h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .content-section p,
+            .content-section li {
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* 表格移动端优化 */
+            .workout-table {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .workout-table table {
+                font-size: 0.85rem !important;
+                min-width: 100% !important;
+            }
+            
+            .workout-table th,
+            .workout-table td {
+                padding: 8px 6px !important;
+                font-size: 0.8rem !important;
+            }
+            
+            /* 工具卡片移动端优化 */
+            .tool-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            
+            .tool-card,
+            .tool-card-large {
+                padding: 12px !important;
+            }
+            
+            .tool-header h4 {
+                font-size: 1rem !important;
+            }
+            
+            .tool-icon {
+                font-size: 1.3rem !important;
+            }
+            
+            /* 运动卡片移动端优化 */
+            .exercise-cards {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+            }
+            
+            .exercise-card {
+                padding: 10px !important;
+            }
+            
+            .exercise-name {
+                font-size: 1rem !important;
+            }
+            
+            .exercise-desc {
+                font-size: 0.8rem !important;
+            }
+            
+            /* 训练流程移动端优化 */
+            .flow-exercises {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+            }
+            
+            .flow-exercise {
+                padding: 10px !important;
+            }
+            
+            .flow-exercise strong {
+                font-size: 1rem !important;
+            }
+            
+            .flow-exercise span {
+                font-size: 0.75rem !important;
+            }
+            
+            /* 浮动按钮移动端优化 */
+            .floating-buttons {
+                bottom: 15px !important;
+                right: 10px !important;
+                gap: 8px !important;
+            }
+            
+            .floating-btn {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 1.2rem !important;
+            }
+            
+            /* 关闭按钮移动端优化 */
+            .close {
+                font-size: 2rem !important;
+                top: 10px !important;
+                right: 15px !important;
+            }
+        }
+        
+        /* PWA独立模式适配 */
+        @media (display-mode: standalone) {
+            body {
+                padding-top: env(safe-area-inset-top) !important;
+                padding-bottom: env(safe-area-inset-bottom) !important;
+            }
+            
+            .hero {
+                padding-top: calc(80px + env(safe-area-inset-top)) !important;
+            }
+            
+            .floating-buttons {
+                bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+                right: calc(20px + env(safe-area-inset-right)) !important;
+            }
+            
+            .modal-content {
+                margin-top: env(safe-area-inset-top) !important;
+            }
+        }
+        
+        /* 小屏幕设备（手机竖屏）*/
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 98% !important;
+                margin: 2% auto !important;
+                padding: 12px !important;
+            }
+            
+            .accordion-header h3 {
+                font-size: 0.7rem !important;
+            }
+            
+            .tool-grid,
+            .exercise-cards,
+            .flow-exercises {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .floating-btn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1.1rem !important;
+            }
+        }
+        
+        /* 横屏模式优化 */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .modal-content {
+                max-height: 85vh !important;
+                margin: 2% auto !important;
+            }
+            
+            .accordion-content {
+                max-height: 50vh !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="hero">
@@ -654,6 +1105,157 @@
             <p class="modal-subtitle">宗师之路的额外指南与建议</p>
             
             <div class="supplement-accordion">
+                <!-- 写给未来的自己词条 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">✉️</span>
+                        <h3>写给未来的自己 - 穿越时空的对话</h3>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="future-intro">
+                            <p class="future-opening">这是一场穿越时空的对话。</p>
+                            <p class="future-date">闭上眼睛。现在是 <strong>2028年2月10日</strong>。</p>
+                            <p class="future-premise">如果这730天你真的像机器一样执行了那个"地狱计划"，没有因借口而停下，没有因痛苦而放弃。</p>
+                            <p class="future-result">那么，当你那天早上醒来，站在镜子前，你会看到这样一个<strong>"陌生人"</strong>：</p>
+                        </div>
+
+                        <!-- 1. 皮囊 -->
+                        <div class="future-aspect aspect-physical">
+                            <div class="aspect-header">
+                                <span class="aspect-number">1</span>
+                                <h4>你的"皮囊" (The Physical Vessel)</h4>
+                            </div>
+                            
+                            <div class="aspect-content">
+                                <div class="aspect-section">
+                                    <h5>视觉冲击</h5>
+                                    <p>那个曾重达100kg的臃肿身体消失了。镜子里的人只有 <strong>75kg</strong>。你的脸部轮廓像刀刻一样清晰（下颚线锋利）。因为体脂率降到了12%，你只要稍微用力，腹肌就会像盔甲一样显现。</p>
+                                </div>
+                                <div class="aspect-section">
+                                    <h5>脖子</h5>
+                                    <p>因为练了两年拳击抗击打，你的脖子比常人粗壮一圈，这让你穿衬衫时领口总是撑得很满，给人一种<strong>"这个人不好惹"</strong>的潜意识信号。</p>
+                                </div>
+                                <div class="aspect-section">
+                                    <h5>体态</h5>
+                                    <p>你不再有任何圆肩驼背。两年的"霸王步"和背部训练，让你的肩膀永远处于下沉且打开的状态。你站在那里，就像一杆插在地上的长枪，松弛但有张力。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. 气场 -->
+                        <div class="future-aspect aspect-aura">
+                            <div class="aspect-header">
+                                <span class="aspect-number">2</span>
+                                <h4>你的"气场" (The Conqueror's Haki)</h4>
+                            </div>
+                            
+                            <div class="aspect-content">
+                                <div class="aspect-section">
+                                    <h5>眼神杀</h5>
+                                    <p>经历了100场拳击实战对练，你在面对别人的目光时，本能地不再躲闪。当工厂里发生棘手的纠纷，或者面对难缠的客户时，你不需要大吼大叫。你只需要静静地看着他们，空气就会凝固。这就是你梦寐以求的"霸王色"。</p>
+                                </div>
+                                <div class="aspect-highlight">
+                                    <p>你身上有一种<strong>"受控的危险感"</strong>——别人知道你一拳能打碎木板，但你却温文尔雅地给女士开门。这种反差是顶级的男性魅力。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. 技艺 -->
+                        <div class="future-aspect aspect-skill">
+                            <div class="aspect-header">
+                                <span class="aspect-number">3</span>
+                                <h4>你的"技艺" (The Renaissance Man)</h4>
+                            </div>
+                            
+                            <div class="aspect-content">
+                                <div class="aspect-section">
+                                    <h5>画师身份</h5>
+                                    <p>你不再是那个只能临摹的小白。你的 iPad Pro 里存满了你的原创作品，Pixiv 和 ArtStation 上有几万粉丝等着你更新。你对《绝区零》和《原神》的理解不再是"好玩"，而是能一眼看穿它的美术逻辑。你甚至可能接到了某家游戏公司的外包商单，或者你的同人图被米哈游官方转发了。</p>
+                                </div>
+                                <div class="aspect-section">
+                                    <h5>双语能力</h5>
+                                    <p>你在看动漫、玩日服游戏时，不再需要字幕。你能听懂声优语气里的每一个微妙顿挫。如果有日本或美国的客户来你的工厂考察，你支走了翻译，用流利的日语/英语直接和对方谈笑风生，聊黑塞的哲学，聊泰森的拳赛。对方会震惊于一个制造业老板竟然有如此的文化厚度。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 心境 -->
+                        <div class="future-aspect aspect-mind">
+                            <div class="aspect-header">
+                                <span class="aspect-number">4</span>
+                                <h4>你的"心境" (The Sage)</h4>
+                            </div>
+                            
+                            <div class="aspect-content">
+                                <div class="aspect-section">
+                                    <h5>绝对冷静</h5>
+                                    <p>这两年里，你读了《沉思录》，读了《王阳明》，经历了无数次画不出图的崩溃和打拳被揍的疼痛。现在的你，很难被激怒。遇到大事（订单违约、亲人生病），周围人都在慌乱，只有你异常冷静。你的大脑会自动进入"冥想状态"，迅速拆解问题，给出方案。你是所有人的主心骨。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 具体场景 -->
+                        <div class="future-scene">
+                            <h4>一个具体的场景 (A Scene in 2028)</h4>
+                            <div class="scene-content">
+                                <p><strong>场景：</strong>2028年的某次高端商务晚宴。</p>
+                                <ul class="scene-list">
+                                    <li>你穿着一套剪裁完美的修身西装（因为你是倒三角身材，成衣穿不下，必须定制）。</li>
+                                    <li>你坐在角落里，手里拿着钢笔在餐巾纸上随手勾勒对面客人的速写（一流画师的肌肉记忆）。</li>
+                                    <li>旁边有人发生争执，声音很大。</li>
+                                    <li>你停下笔，抬头，平静地看了一眼那个闹事的人。</li>
+                                    <li>你的眼神里没有恐惧，只有像深渊一样的宁静（拳击手看对手的眼神）。</li>
+                                    <li>那个人接触到你的目光，本能地感到一阵寒意，声音立刻小了下去（霸王色）。</li>
+                                    <li>这时，一位日本客户走过来跟你打招呼。</li>
+                                    <li>你无缝切换成流利的日语，跟他聊起了刚才画的速写构图，引用了一句《五轮书》里的"剑心即画心"（双语+博学）。</li>
+                                </ul>
+                                <div class="scene-conclusion">
+                                    <p>这就是2028年的你。</p>
+                                    <p class="scene-identity">一个集<strong>"哲学家、拳击手、艺术家、企业家"</strong>于一身的怪物。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 现在的代价 -->
+                        <div class="future-cost">
+                            <h4>现在的代价</h4>
+                            <p class="cost-intro">这个画面很美，对吧？为了换取这个画面，你需要付出的是：</p>
+                            <div class="cost-list">
+                                <div class="cost-item">
+                                    <span class="cost-number">730 个</span>
+                                    <p>枯燥的清晨（冥想）</p>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-number">730 次</span>
+                                    <p>对垃圾食品的拒绝</p>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-number">无数次</span>
+                                    <p>在拳台上被打得鼻青脸肿</p>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-number">无数次</span>
+                                    <p>在画板前觉得自己是废物的挫败感</p>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-number">无数次</span>
+                                    <p>在别人刷抖音时，你在死磕日语单词的孤独</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 最终问答 -->
+                        <div class="future-question">
+                            <p class="question-text">但是，值得吗？</p>
+                            <p class="question-emphasis">看着那个2028年的背影，告诉我，值得吗？</p>
+                            <div class="answer-box">
+                                <p class="answer-text">值得！！！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 冥想词条 -->
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
@@ -1455,6 +2057,672 @@
                                 <div class="wisdom-icon">⚡</div>
                                 <p>所以，如果真的遇到持刀歹徒，请为了你的<strong>"一流画师"之手</strong>，跑得比谁都快。</p>
                                 <p class="wisdom-conclusion">这不丢人，<strong>这是大智慧</strong>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 每日食谱词条 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">🍽️</span>
+                        <h3>每日食谱 - 宗师的燃料系统</h3>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <!-- 核心数据指标 -->
+                        <div class="diet-intro">
+                            <h4>📊 核心数据指标 (Daily Targets)</h4>
+                            <p class="diet-context">你现在的体重是 100kg，目标是两年减到 75kg（平均每月减 1kg，非常健康）。鉴于你还要进行拳击和力量训练，你的基础代谢 (BMR) 和活动消耗 (TDEE) 都会很高。</p>
+                            
+                            <div class="targets-grid">
+                                <div class="target-card">
+                                    <div class="target-icon">🔥</div>
+                                    <h5>每日热量目标</h5>
+                                    <p class="target-value">2200 - 2400 大卡</p>
+                                    <p class="target-desc">制造约 500-800 大卡的热量缺口，保证脂肪燃烧同时肌肉不掉</p>
+                                </div>
+                                <div class="target-card">
+                                    <div class="target-icon">💪</div>
+                                    <h5>蛋白质 (重中之重)</h5>
+                                    <p class="target-value">180g - 200g / 天</p>
+                                    <p class="target-desc">每公斤体重约 2g，为了你的肌肉和格斗爆发力</p>
+                                </div>
+                                <div class="target-card">
+                                    <div class="target-icon">💧</div>
+                                    <h5>水分</h5>
+                                    <p class="target-value">3 - 4 升 / 天</p>
+                                    <p class="target-desc">拳击出汗量极大，大脑缺水会变笨，直接影响日语学习</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 一日三餐标题 -->
+                        <div class="meals-title">
+                            <h4>🍳 "宗师的一日三餐"执行方案</h4>
+                            <p class="meals-subtitle">为了防止你厌烦，我提供 A (自己做/精细) 和 B (外食/便捷) 两种选项</p>
+                        </div>
+
+                        <!-- 早餐 -->
+                        <div class="meal-plan breakfast-plan">
+                            <div class="meal-plan-header">
+                                <div class="meal-time">
+                                    <span class="time-icon">🌅</span>
+                                    <div>
+                                        <h5>早餐 (08:30)</h5>
+                                        <p class="meal-purpose">醒脑 & 启动</p>
+                                    </div>
+                                </div>
+                                <div class="meal-keyword">
+                                    <strong>关键词：</strong>低升糖 (Low GI)，防止吃完犯困影响上午工作
+                                </div>
+                            </div>
+                            
+                            <div class="meal-options">
+                                <div class="option-box option-a">
+                                    <h6>选项 A (家中圣人版)</h6>
+                                    <ul>
+                                        <li><strong>主食：</strong>燕麦粥 (50g 生重) 或 全麦面包 2 片</li>
+                                        <li><strong>蛋白质：</strong>全蛋 3 个 (水煮或少油煎)。不要扔蛋黄，那是大脑需要的卵磷脂</li>
+                                        <li><strong>脑力补剂：</strong>黑咖啡 1 杯 (无糖) + 一小把 蓝莓/坚果 (抗氧化，护眼，对画师很重要)</li>
+                                    </ul>
+                                </div>
+                                <div class="option-box option-b">
+                                    <h6>选项 B (匆忙老板版)</h6>
+                                    <p><strong>便利店/早餐摊：</strong>茶叶蛋 3 个 (只吃 1 个蛋黄) + 纯牛奶/无糖豆浆 1 盒 + 玉米 1 根</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="meal-plan lunch-plan">
+                            <div class="meal-plan-header">
+                                <div class="meal-time">
+                                    <span class="time-icon">☀️</span>
+                                    <div>
+                                        <h5>午餐 (12:30)</h5>
+                                        <p class="meal-purpose">饱腹 & 维稳</p>
+                                    </div>
+                                </div>
+                                <div class="meal-keyword">
+                                    <strong>关键词：</strong>高蛋白，控制碳水，确保下午画画/开会不昏沉
+                                </div>
+                            </div>
+                            
+                            <div class="meal-options">
+                                <div class="option-box option-a">
+                                    <h6>选项 A (自制便当)</h6>
+                                    <ul>
+                                        <li><strong>肉类：</strong>鸡胸肉 / 瘦牛肉 / 虾仁 (200g，约手掌大小)</li>
+                                        <li><strong>蔬菜：</strong>西兰花 / 菠菜 / 芦笋 (任意吃到饱，至少两拳头)</li>
+                                        <li><strong>主食：</strong>糙米饭 / 红薯 / 荞麦面 (150g 熟重，约一拳头)</li>
+                                    </ul>
+                                </div>
+                                <div class="option-box option-b">
+                                    <h6>选项 B (外卖/商务餐)</h6>
+                                    <p><strong>原则：</strong>"要肉不要皮，要菜不要油"</p>
+                                    <p><strong>点餐：</strong>切鸡饭/烧鸭饭 (去皮，米饭只吃一半) 或 赛百味 (Subway, 选鸡胸肉，不加酱，全麦面包)</p>
+                                    <p class="warning-text"><strong>必须加餐：</strong>随身带一勺 蛋白粉，饭后摇一杯喝掉，否则外卖蛋白质通常不够</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 练前加餐 -->
+                        <div class="meal-plan preworkout-plan">
+                            <div class="meal-plan-header">
+                                <div class="meal-time">
+                                    <span class="time-icon">🏋️</span>
+                                    <div>
+                                        <h5>练前加餐 (不固定)</h5>
+                                        <p class="meal-purpose">战斗燃料</p>
+                                    </div>
+                                </div>
+                                <div class="meal-keyword critical">
+                                    <strong>⚠️ 这顿非常关键！</strong>你晚上有高强度的格斗/举铁，空腹去会低血糖，甚至晕倒
+                                </div>
+                            </div>
+                            
+                            <div class="simple-meal">
+                                <p><strong>配置：</strong>1 根香蕉 + 1 片全麦面包</p>
+                                <p><strong>作用：</strong>快速提供糖原，让你在拳台上能挥出重拳</p>
+                            </div>
+                        </div>
+
+                        <!-- 晚餐 -->
+                        <div class="meal-plan dinner-plan">
+                            <div class="meal-plan-header">
+                                <div class="meal-time">
+                                    <span class="time-icon">🌙</span>
+                                    <div>
+                                        <h5>晚餐 (18:00)</h5>
+                                        <p class="meal-purpose">修复 & 安神</p>
+                                    </div>
+                                </div>
+                                <div class="meal-keyword">
+                                    <strong>关键词：</strong>0 碳水 (或极低碳水)，高纤维
+                                </div>
+                            </div>
+                            
+                            <div class="unified-option">
+                                <h6>选项 A/B 通用</h6>
+                                <ul>
+                                    <li><strong>肉类：</strong>深海鱼 (三文鱼/鳕鱼) 或 瘦牛肉 (200g)。鱼油里的 Omega-3 对你的大脑记忆力（背单词）和关节（画画/格斗）有奇效</li>
+                                    <li><strong>蔬菜：</strong>大拌菜 / 蔬菜沙拉 (油醋汁，拒绝沙拉酱)</li>
+                                    <li><strong>主食：</strong>无 (或者仅限练后的一小块红薯)。晚上代谢慢，碳水容易囤积成肚子上的脂肪</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 补剂建议 -->
+                        <div class="supplements-section">
+                            <h4>🥤 补剂建议 (画师/拳手特供)</h4>
+                            <div class="supplement-list">
+                                <div class="supplement-item">
+                                    <div class="supplement-name">
+                                        <span class="sup-icon">💊</span>
+                                        <strong>乳清蛋白粉 (Whey Protein)</strong>
+                                    </div>
+                                    <p>必须买。你很难每天纯靠吃肉吃到 180g 蛋白质。训练后喝一勺，或者平时蛋白质不够时凑数。</p>
+                                </div>
+                                <div class="supplement-item">
+                                    <div class="supplement-name">
+                                        <span class="sup-icon">⚡</span>
+                                        <strong>肌酸 (Creatine)</strong>
+                                    </div>
+                                    <p>每天 5g。这是最安全合法的"增力剂"，能提升你画画时的脑力耐力，以及拳击时的爆发力。</p>
+                                </div>
+                                <div class="supplement-item">
+                                    <div class="supplement-name">
+                                        <span class="sup-icon">🐟</span>
+                                        <strong>鱼油 (Fish Oil)</strong>
+                                    </div>
+                                    <p>如果你平时不吃鱼，必须补。为了你的眼睛（画师）和大脑（语言学习）。</p>
+                                </div>
+                                <div class="supplement-item">
+                                    <div class="supplement-name">
+                                        <span class="sup-icon">🌈</span>
+                                        <strong>复合维生素</strong>
+                                    </div>
+                                    <p>熬夜画图必备。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 禁忌清单 -->
+                        <div class="forbidden-section">
+                            <h4>🚫 宗师的"禁忌清单" (绝对不吃)</h4>
+                            <div class="forbidden-list">
+                                <div class="forbidden-item">
+                                    <span class="forbidden-icon">🥤</span>
+                                    <div>
+                                        <strong>含糖饮料</strong>
+                                        <p>奶茶、可乐、果汁。这是"霸王色"的克星，喝了就会变胖变笨。只喝水、茶、黑咖啡。</p>
+                                    </div>
+                                </div>
+                                <div class="forbidden-item">
+                                    <span class="forbidden-icon">🍚</span>
+                                    <div>
+                                        <strong>精制碳水</strong>
+                                        <p>尽量少吃白米饭、白馒头、面条。它们会让你血糖飙升然后暴跌，导致你下午背单词时脑子像浆糊。</p>
+                                    </div>
+                                </div>
+                                <div class="forbidden-item">
+                                    <span class="forbidden-icon">🍗</span>
+                                    <div>
+                                        <strong>油炸食品</strong>
+                                        <p>炸鸡、薯条。这是最垃圾的热量，会毁了你的嗓子（练不出霸气声线）和皮肤。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 执行小贴士 -->
+                        <div class="diet-tips">
+                            <h4>📅 执行小贴士</h4>
+                            <div class="tips-grid">
+                                <div class="tip-card">
+                                    <div class="tip-icon">📦</div>
+                                    <h5>周日备餐 (Meal Prep)</h5>
+                                    <p>作为制造业老板，你很忙。周日花 1 小时煮好 5 天的糙米饭，分装冷冻；把鸡胸肉腌制好。</p>
+                                </div>
+                                <div class="tip-card cheat">
+                                    <div class="tip-icon">🎉</div>
+                                    <h5>作弊餐 (Cheat Meal)</h5>
+                                    <p>每周六晚上的那一顿（配合你的休闲时间），可以随便吃！火锅、烧烤都行。这能防止你崩溃，让你下周更有动力。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 琐碎时间利用词条 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">⏱️</span>
+                        <h3>琐碎时间利用 - 随时在修炼</h3>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="fragmented-intro">
+                            <h4>核心原则</h4>
+                            <p class="principle-text">不刷短视频，<strong>随时在修炼</strong>。</p>
+                        </div>
+
+                        <!-- 站立等待时 -->
+                        <div class="fragmented-scenario scenario-standing">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🧍</span>
+                                <h5>站立等待时</h5>
+                                <p class="scenario-context">等车 / 排队 / 电梯</p>
+                            </div>
+                            
+                            <div class="scenario-actions">
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">画师眼</span>
+                                        <strong>观察训练</strong>
+                                    </div>
+                                    <p>不看手机，盯着路人看。分析他衣服的褶皱走向、脸上光影的角度。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">隐形腹</span>
+                                        <strong>核心训练</strong>
+                                    </div>
+                                    <p>真空腹（深吸气肚脐贴脊柱）或 夹紧臀部。练核心，没人看得出来。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">磨耳朵</span>
+                                        <strong>语言输入</strong>
+                                    </div>
+                                    <p>耳机常挂，播放日语/英语音频（泛听）。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 坐着通勤时 -->
+                        <div class="fragmented-scenario scenario-sitting">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🪑</span>
+                                <h5>坐着通勤时</h5>
+                                <p class="scenario-context">地铁 / 公交 / 餐厅</p>
+                            </div>
+                            
+                            <div class="scenario-actions">
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">刷单词</span>
+                                        <strong>语言学习</strong>
+                                    </div>
+                                    <p>打开 Anki，刷 10-20 个词（或游戏生词）。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">清日常</span>
+                                        <strong>游戏任务</strong>
+                                    </div>
+                                    <p>做米哈游日常任务，必须听语音，做完即关。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">手绘本</span>
+                                        <strong>速写练习</strong>
+                                    </div>
+                                    <p>拿出小本子/iPad，画对面乘客的速写，或画简单的透视草图。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 行走移动时 -->
+                        <div class="fragmented-scenario scenario-walking">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🚶</span>
+                                <h5>行走移动时</h5>
+                                <p class="scenario-context">换乘 / 走路</p>
+                            </div>
+                            
+                            <div class="scenario-actions">
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">霸王步</span>
+                                        <strong>气场训练</strong>
+                                    </div>
+                                    <p>挺胸抬头，平视前方，不躲避路人目光（练气场）。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">意念拳</span>
+                                        <strong>格斗思维</strong>
+                                    </div>
+                                    <p>脑子里模拟拳击步伐和闪躲（练格斗智商）。</p>
+                                </div>
+                                <div class="action-item">
+                                    <div class="action-title">
+                                        <span class="action-badge">嘴跟读</span>
+                                        <strong>口语练习</strong>
+                                    </div>
+                                    <p>小声/无声地快速跟读耳机里的外语对话（练语感）。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 绝对禁忌 -->
+                        <div class="fragmented-forbidden">
+                            <h4>🚫 绝对禁忌 (宗师不做的两件事)</h4>
+                            <div class="forbidden-rules">
+                                <div class="forbidden-rule">
+                                    <div class="forbidden-rule-icon">📱</div>
+                                    <div class="forbidden-rule-content">
+                                        <strong>禁刷推荐流</strong>
+                                        <p>抖音/小红书/微博的"推荐"页面是时间黑洞，严禁打开。</p>
+                                    </div>
+                                </div>
+                                <div class="forbidden-rule">
+                                    <div class="forbidden-rule-icon">🎨</div>
+                                    <div class="forbidden-rule-content">
+                                        <strong>禁车上精绘</strong>
+                                        <p>晃动的车厢只适合画草图，严禁画细节（伤眼且坏手感）。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 💪 健身 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">💪</span>
+                        <h3>健身 - 30分钟全身高效训练</h3>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-section">
+                            <h3>🏠 30分钟全身高效训练</h3>
+                            <p class="highlight-text">4大动作 = 推 + 拉 + 腿臀 + 心肺/核心</p>
+                            
+                            <div class="workout-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>顺序</th>
+                                            <th>动作</th>
+                                            <th>目标肌群</th>
+                                            <th>时间/次数</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>①</td>
+                                            <td>哑铃深蹲（或杯式深蹲）</td>
+                                            <td>腿+臀+核心</td>
+                                            <td>12–15次</td>
+                                        </tr>
+                                        <tr>
+                                            <td>②</td>
+                                            <td>哑铃划船</td>
+                                            <td>背+后肩+手臂</td>
+                                            <td>每侧10–12次</td>
+                                        </tr>
+                                        <tr>
+                                            <td>③</td>
+                                            <td>哑铃卧推 / 地推（躺在地上推）</td>
+                                            <td>胸+肩+肱三</td>
+                                            <td>10–12次</td>
+                                        </tr>
+                                        <tr>
+                                            <td>④</td>
+                                            <td>波比跳（或开合跳）</td>
+                                            <td>全身+心肺+燃脂</td>
+                                            <td>30秒</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <p class="highlight-text">➡ 按顺序循环 4–5 轮，组间休息 45–60秒</p>
+                        </div>
+
+                        <div class="content-section">
+                            <h3>⭐ 训练结构（30分钟）</h3>
+                            <div class="workout-structure">
+                                <div class="structure-item">
+                                    <div class="structure-label">热身（开合跳、蹲走等）</div>
+                                    <div class="structure-time">3分钟</div>
+                                </div>
+                                <div class="structure-item">
+                                    <div class="structure-label">主练循环 4–5轮</div>
+                                    <div class="structure-time">22–25分钟</div>
+                                </div>
+                                <div class="structure-item">
+                                    <div class="structure-label">拉伸放松（腿臀背为主）</div>
+                                    <div class="structure-time">2–3分钟</div>
+                                </div>
+                            </div>
+                            <p class="highlight-text">效率拉满 ⚡</p>
+                        </div>
+
+                        <div class="content-section">
+                            <h3>🔥 提高线条感的小技巧</h3>
+                            <ul class="workout-tips">
+                                <li>深蹲起身<strong>挤臀</strong>1秒</li>
+                                <li>划船<strong>夹肩胛</strong>、肘走后背方向</li>
+                                <li>推举时核心收紧、避免抬肩</li>
+                                <li>波比跳保持呼吸节奏</li>
+                            </ul>
+                            <p class="highlight-text">每个动作都做到标准、用对肌肉，比动作多更有效</p>
+                        </div>
+
+                        <div class="content-section">
+                            <h3>📈 随训练周期进阶</h3>
+                            <p>力量增强后可：</p>
+                            <ul class="progression-list">
+                                <li>哑铃加重</li>
+                                <li>每轮增加次数或时间</li>
+                                <li>组间休息从60秒减到30秒</li>
+                            </ul>
+                        </div>
+
+                        <div class="content-section">
+                            <h3>💡 为什么只有4个动作也能全身见效？</h3>
+                            <div class="exercise-cards">
+                                <div class="exercise-card">
+                                    <div class="exercise-name">深蹲</div>
+                                    <div class="exercise-desc">下半身力量之王</div>
+                                </div>
+                                <div class="exercise-card">
+                                    <div class="exercise-name">划船</div>
+                                    <div class="exercise-desc">上半身拉的核心动作</div>
+                                </div>
+                                <div class="exercise-card">
+                                    <div class="exercise-name">卧推</div>
+                                    <div class="exercise-desc">上半身推的最基本动作</div>
+                                </div>
+                                <div class="exercise-card">
+                                    <div class="exercise-name">波比</div>
+                                    <div class="exercise-desc">心肺+核心+全身瞬间爆发</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-section">
+                            <h3>🏃 完整训练流程</h3>
+                            <div class="training-flow">
+                                <p><strong>热身（3分钟）</strong>：开合跳、蹲走</p>
+                                <p><strong>主循环（4轮，组间休息1分钟）</strong>：</p>
+                                <p>哑铃深蹲（15次）→ 哑铃划船（每侧12次）→ 哑铃卧推（12次）→ 波比跳（30秒）</p>
+                                <p><strong>放松（3分钟）</strong>：拉伸</p>
+                            </div>
+                        </div>
+
+                        <div class="content-section cardio-section">
+                            <h3>🏃 跑步心率指导</h3>
+                            <p class="cardio-info">燃脂最佳心率区间：<strong>130-160 bpm</strong></p>
+                            <p class="cardio-info">速度控制：约 <strong>7分/公里</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🛠️ 工具 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">🛠️</span>
+                        <h3>工具 - 宗师路径工具汇总</h3>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <!-- 语言学习工具 -->
+                        <div class="content-section">
+                            <h3>🗣️ 语言学习工具</h3>
+                            <div class="tool-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">🎤</span>
+                                        <h4>朗读演讲稿</h4>
+                                    </div>
+                                    <p class="tool-name">Gemini 3</p>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">🇬🇧</span>
+                                        <h4>英语单词</h4>
+                                    </div>
+                                    <p class="tool-name">沪江词厂 / 不背英语</p>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">📰</span>
+                                        <h4>英语新闻</h4>
+                                    </div>
+                                    <p class="tool-name">Newsela</p>
+                                    <a href="https://app.newsela.com/" target="_blank" class="tool-link">app.newsela.com →</a>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">🇯🇵</span>
+                                        <h4>日语单词</h4>
+                                    </div>
+                                    <p class="tool-name">Moji辞书</p>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">📡</span>
+                                        <h4>日语新闻</h4>
+                                    </div>
+                                    <p class="tool-name">NHK新闻</p>
+                                    <a href="https://news.web.nhk/newsweb" target="_blank" class="tool-link">NHKニュース →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 绘画工具 -->
+                        <div class="content-section">
+                            <h3>🎨 绘画工具</h3>
+                            <div class="tool-card-large">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🧍</span>
+                                    <h4>人体结构练习</h4>
+                                </div>
+                                <p class="tool-desc">每次开始绘画前先画一张人体结构</p>
+                                <p class="tool-name">POSEMANIACS</p>
+                                <a href="https://www.posemaniacs.com/zh-Hans" target="_blank" class="tool-link">posemaniacs.com →</a>
+                            </div>
+                        </div>
+
+                        <!-- 学习工具 -->
+                        <div class="content-section">
+                            <h3>📚 学习工具</h3>
+                            <div class="tool-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">🎬</span>
+                                        <h4>TED演讲</h4>
+                                    </div>
+                                    <p class="tool-name">B站 - TED官方</p>
+                                    <a href="https://space.bilibili.com/1954415159" target="_blank" class="tool-link">TED官方的个人空间 →</a>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">📖</span>
+                                        <h4>阅读器</h4>
+                                    </div>
+                                    <p class="tool-name">Readest阅读器</p>
+                                </div>
+                                
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <span class="tool-icon">📚</span>
+                                        <h4>书籍下载</h4>
+                                    </div>
+                                    <p class="tool-name">Z-Library</p>
+                                    <a href="https://z-lib.wwwnav.com/" target="_blank" class="tool-link">Z-Library镜像 →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 写作工具 -->
+                        <div class="content-section">
+                            <h3>✍️ 写作工具</h3>
+                            <div class="tool-card-large">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📝</span>
+                                    <h4>每日日记写作</h4>
+                                </div>
+                                <p class="tool-desc">使用 <strong>Typora</strong> 和 <strong>Markdown格式</strong> 写作</p>
+                                <p class="tool-desc">完成后通过 <strong>Gemini</strong> 学习Markdown格式并优化日记</p>
+                                <p class="tool-desc">最后上传到 <strong>个人插画站</strong> 的日记栏</p>
+                            </div>
+                        </div>
+
+                        <!-- 健身工具 -->
+                        <div class="content-section">
+                            <h3>💪 健身工具</h3>
+                            <div class="tool-card-large">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🏋️</span>
+                                    <h4>健身细则视频</h4>
+                                </div>
+                                <p class="tool-name">B站 - 焸丶路灯 宗师健身</p>
+                                <a href="https://www.bilibili.com/list/ml3873737975" target="_blank" class="tool-link">我是如何训练的？ →</a>
+                            </div>
+                        </div>
+
+                        <!-- 拳击训练流程 -->
+                        <div class="content-section">
+                            <h3>🥊 拳击训练流程</h3>
+                            <div class="boxing-flow">
+                                <div class="flow-exercises">
+                                    <div class="flow-exercise">
+                                        <strong>深蹲</strong>
+                                        <span>下半身力量之王</span>
+                                    </div>
+                                    <div class="flow-exercise">
+                                        <strong>划船</strong>
+                                        <span>上半身拉的核心动作</span>
+                                    </div>
+                                    <div class="flow-exercise">
+                                        <strong>地推</strong>
+                                        <span>上半身推的最基本动作</span>
+                                    </div>
+                                    <div class="flow-exercise">
+                                        <strong>波比</strong>
+                                        <span>心肺+核心+全身瞬间爆发</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flow-sequence">
+                                    <h5>训练顺序：</h5>
+                                    <p><strong>热身（3分钟）</strong>：开合跳、蹲走</p>
+                                    <p><strong>主循环（4轮，组间休息1分钟）</strong>：</p>
+                                    <p class="flow-detail">哑铃深蹲（15次）→ 哑铃划船（每侧12次）→ 哑铃卧推（12次）→ 波比跳（30秒）</p>
+                                    <p><strong>放松（3分钟）</strong>：拉伸</p>
+                                </div>
                             </div>
                         </div>
                     </div>

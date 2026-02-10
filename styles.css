@@ -3128,8 +3128,16 @@ body {
     border-radius: 12px;
     margin-bottom: 15px;
     border: 2px solid #e9ecef;
-    overflow: hidden;
+    position: relative;
     transition: all 0.3s;
+}
+
+.accordion-item.active {
+    overflow: visible;
+}
+
+.accordion-item:not(.active) {
+    overflow: hidden;
 }
 
 .accordion-item:hover {
@@ -3150,6 +3158,17 @@ body {
     background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), rgba(230, 126, 34, 0.05));
     transition: background 0.3s;
     user-select: none;
+    border-radius: 12px;
+}
+
+.accordion-item.active .accordion-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-bottom: 2px solid #f39c12;
+    border-radius: 12px;
 }
 
 .accordion-header:hover {
@@ -4647,6 +4666,538 @@ body {
     }
 }
 
+/* 每日食谱样式 */
+.diet-intro {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 5px solid #2ecc71;
+}
+
+.diet-intro h4 {
+    color: #27ae60;
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+}
+
+.diet-context {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.targets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.target-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.target-card:hover {
+    border-color: #2ecc71;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+}
+
+.target-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.target-card h5 {
+    color: var(--dark);
+    font-size: 1.05rem;
+    margin: 0 0 10px 0;
+}
+
+.target-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2ecc71;
+    margin: 0 0 10px 0;
+}
+
+.target-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.meals-title {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.meals-title h4 {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0 0 10px 0;
+}
+
+.meals-subtitle {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.meal-plan {
+    background: white;
+    border: 3px solid;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.breakfast-plan {
+    border-color: #f39c12;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), white);
+}
+
+.lunch-plan {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), white);
+}
+
+.preworkout-plan {
+    border-color: #9b59b6;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05), white);
+}
+
+.dinner-plan {
+    border-color: #34495e;
+    background: linear-gradient(135deg, rgba(52, 73, 94, 0.05), white);
+}
+
+.meal-plan-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.meal-time {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.time-icon {
+    font-size: 2rem;
+}
+
+.meal-time h5 {
+    color: var(--dark);
+    font-size: 1.3rem;
+    margin: 0 0 3px 0;
+}
+
+.meal-purpose {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.meal-keyword {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.meal-keyword.critical {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    border: 2px solid #e74c3c;
+}
+
+.meal-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.option-box {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid;
+}
+
+.option-a {
+    border-left-color: #2ecc71;
+}
+
+.option-b {
+    border-left-color: #3498db;
+}
+
+.option-box h6 {
+    color: var(--dark);
+    font-size: 1.05rem;
+    margin: 0 0 12px 0;
+}
+
+.option-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.option-box ul li {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.option-box ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #2ecc71;
+    font-weight: 700;
+}
+
+.option-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.option-box p:last-child {
+    margin-bottom: 0;
+}
+
+.simple-meal {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.simple-meal p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.simple-meal p:last-child {
+    margin-bottom: 0;
+}
+
+.unified-option {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.unified-option h6 {
+    color: var(--dark);
+    font-size: 1.05rem;
+    margin: 0 0 12px 0;
+}
+
+.unified-option ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.unified-option ul li {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.unified-option ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #34495e;
+    font-weight: 700;
+}
+
+.supplements-section {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 5px solid #3498db;
+}
+
+.supplements-section h4 {
+    color: #2980b9;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+}
+
+.supplement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.supplement-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.supplement-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.sup-icon {
+    font-size: 1.5rem;
+}
+
+.supplement-name strong {
+    color: var(--dark);
+    font-size: 1.05rem;
+}
+
+.supplement-item p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.forbidden-section {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 3px solid #e74c3c;
+}
+
+.forbidden-section h4 {
+    color: #c0392b;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.forbidden-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.forbidden-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    border: 2px solid #e74c3c;
+}
+
+.forbidden-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.forbidden-item strong {
+    display: block;
+    color: #e74c3c;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.forbidden-item p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.diet-tips {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.diet-tips h4 {
+    color: white;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.tip-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.tip-card.cheat {
+    background: rgba(46, 204, 113, 0.2);
+    border-color: #2ecc71;
+}
+
+.tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.tip-card h5 {
+    color: white;
+    font-size: 1.15rem;
+    margin: 0 0 10px 0;
+}
+
+.tip-card p {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 每日食谱响应式 */
+@media (max-width: 767px) {
+    .targets-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .meal-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .diet-intro {
+        padding: 20px;
+    }
+    
+    .diet-intro h4 {
+        font-size: 1.2rem;
+    }
+    
+    .targets-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .target-card {
+        padding: 15px;
+    }
+    
+    .target-icon {
+        font-size: 2rem;
+    }
+    
+    .target-value {
+        font-size: 1.15rem;
+    }
+    
+    .meals-title {
+        padding: 15px;
+    }
+    
+    .meals-title h4 {
+        font-size: 1.2rem;
+    }
+    
+    .meal-plan {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .time-icon {
+        font-size: 1.8rem;
+    }
+    
+    .meal-time h5 {
+        font-size: 1.15rem;
+    }
+    
+    .meal-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .option-box,
+    .simple-meal,
+    .unified-option {
+        padding: 12px;
+    }
+    
+    .supplements-section,
+    .forbidden-section {
+        padding: 20px;
+    }
+    
+    .supplements-section h4,
+    .forbidden-section h4 {
+        font-size: 1.2rem;
+    }
+    
+    .supplement-item,
+    .forbidden-item {
+        padding: 12px;
+    }
+    
+    .forbidden-icon {
+        font-size: 1.8rem;
+    }
+    
+    .diet-tips {
+        padding: 20px;
+    }
+    
+    .diet-tips h4 {
+        font-size: 1.2rem;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .tip-card {
+        padding: 15px;
+    }
+    
+    .tip-icon {
+        font-size: 2rem;
+    }
+}
+
+
 
 
 .task-strategy {
@@ -4753,5 +5304,278 @@ body {
     .language-phase {
         margin-bottom: 20px;
         padding-bottom: 20px;
+    }
+}
+
+
+/* 琐碎时间利用样式 */
+.fragmented-intro {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(142, 68, 173, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 3px solid #9b59b6;
+}
+
+.fragmented-intro h4 {
+    color: #8e44ad;
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+}
+
+.principle-text {
+    font-size: 1.3rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.fragmented-scenario {
+    background: white;
+    border: 3px solid;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.fragmented-scenario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.scenario-standing {
+    border-color: #3498db;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), white);
+}
+
+.scenario-sitting {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), white);
+}
+
+.scenario-walking {
+    border-color: #2ecc71;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), white);
+}
+
+.scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.scenario-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.scenario-header h5 {
+    color: var(--dark);
+    font-size: 1.4rem;
+    margin: 0 0 5px 0;
+}
+
+.scenario-context {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.scenario-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #95a5a6;
+    transition: all 0.3s;
+}
+
+.scenario-standing .action-item {
+    border-left-color: #3498db;
+}
+
+.scenario-sitting .action-item {
+    border-left-color: #e74c3c;
+}
+
+.scenario-walking .action-item {
+    border-left-color: #2ecc71;
+}
+
+.action-item:hover {
+    background: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.action-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.action-badge {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.action-title strong {
+    color: var(--dark);
+    font-size: 1.05rem;
+}
+
+.action-item p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.fragmented-forbidden {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    padding: 25px;
+    border-radius: 12px;
+    border: 3px solid #e74c3c;
+}
+
+.fragmented-forbidden h4 {
+    color: #c0392b;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.forbidden-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.forbidden-rule {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    border: 2px solid #e74c3c;
+}
+
+.forbidden-rule-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.forbidden-rule-content strong {
+    display: block;
+    color: #e74c3c;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.forbidden-rule-content p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* 琐碎时间利用响应式 */
+@media (max-width: 767px) {
+    .scenario-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fragmented-intro {
+        padding: 20px;
+    }
+    
+    .fragmented-intro h4 {
+        font-size: 1.2rem;
+    }
+    
+    .principle-text {
+        font-size: 1.15rem;
+    }
+    
+    .fragmented-scenario {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .scenario-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .scenario-icon {
+        font-size: 2rem;
+    }
+    
+    .scenario-header h5 {
+        font-size: 1.2rem;
+    }
+    
+    .scenario-actions {
+        gap: 12px;
+    }
+    
+    .action-item {
+        padding: 12px;
+    }
+    
+    .action-title {
+        flex-wrap: wrap;
+    }
+    
+    .action-badge {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+    }
+    
+    .action-title strong {
+        font-size: 1rem;
+    }
+    
+    .fragmented-forbidden {
+        padding: 20px;
+    }
+    
+    .fragmented-forbidden h4 {
+        font-size: 1.2rem;
+    }
+    
+    .forbidden-rule {
+        padding: 15px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .forbidden-rule-icon {
+        font-size: 2rem;
+    }
+    
+    .forbidden-rule-content strong {
+        font-size: 1.05rem;
     }
 }
