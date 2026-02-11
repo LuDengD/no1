@@ -1,4 +1,4 @@
-const CACHE_NAME = 'grandmaster-v4';
+const CACHE_NAME = 'grandmaster-v5';
 const urlsToCache = [
   '/',
   '/index.html',
